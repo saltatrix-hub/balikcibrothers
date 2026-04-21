@@ -190,6 +190,19 @@ section { padding:6rem 3rem; }
 .pact { font-size:0.78rem; color:var(--muted); cursor:pointer; transition:color 0.2s; background:none; border:none; font-family:'Nunito',sans-serif; }
 .pact:hover { color:var(--gold); }
 
+
+.video-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.5rem; }
+.video-card { background:var(--card); border-radius:1rem; border:1px solid rgba(255,255,255,0.06); overflow:hidden; transition:transform 0.3s,border-color 0.3s; }
+.video-card:hover { transform:translateY(-5px); border-color:rgba(240,165,0,0.25); }
+.video-frame { position:relative; aspect-ratio:16/9; background:#101522; }
+.video-frame iframe { width:100%; height:100%; border:0; display:block; }
+.video-body { padding:1.2rem; }
+.video-badge { display:inline-block; margin-bottom:0.8rem; font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:0.28rem 0.7rem; border-radius:999px; background:rgba(240,165,0,0.14); color:var(--gold); }
+.video-card h3 { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.45rem; }
+.video-card p { font-size:0.85rem; color:var(--muted); line-height:1.7; }
+.video-link { display:inline-block; margin-top:1rem; color:var(--sky); text-decoration:none; font-weight:700; font-size:0.86rem; transition:color 0.2s; }
+.video-link:hover { color:var(--gold); }
+
 /* SPOTS */
 .spots { background:var(--dark); }
 .spots-inner { display:grid; grid-template-columns:1fr 1.4fr; gap:3rem; align-items:start; }
@@ -269,11 +282,9 @@ footer p { font-size:0.8rem; color:var(--muted); }
   .hero-row{gap:0.75rem}
   .mgrid{grid-template-columns:1fr}
   .pgrid{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:1fr}
   .spots-inner{grid-template-columns:1fr}
   .join-box{grid-template-columns:1fr;padding:2.5rem}
-  .insta { min-height:560px; }
-  .insta-track { gap:0.75rem; animation-duration:32s; }
-  .insta-slide { flex:0 0 160px; border-radius:0.8rem; }
   footer{flex-direction:column;text-align:center}
 }
 </style>
@@ -284,9 +295,8 @@ footer p { font-size:0.8rem; color:var(--muted); }
   <div class="logo">BALIKÇI <span>BROTHERS</span></div>
   <ul>
     <li><a href="#hakkimizda">Hakkımızda</a></li>
-    <li><a href="#gonderiler">Gönderiler</a></li>
+    <li><a href="#gonderiler">YouTube</a></li>
     <li><a href="#noktalar">Noktalar</a></li>
-    <li><a href="#instagram">Instagram</a></li>
     <li><a href="#katil" class="nav-join">Katıl</a></li>
   </ul>
 </nav>
@@ -374,64 +384,84 @@ footer p { font-size:0.8rem; color:var(--muted); }
 <section class="feed" id="gonderiler">
   <div class="container">
     <div class="feed-head fade">
-      <div><div class="sec-eye">Topluluk</div><h2 class="sec-title">Son Gönderiler</h2></div>
-      <a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör →</a>
+      <div>
+        <div class="sec-eye">YouTube</div>
+        <h2 class="sec-title">Son Videolar</h2>
+      </div>
     </div>
-    <div class="pgrid">
-      <div class="pcard fade">
-        <div class="pthumb t1"><div class="pthumb-e">🐟</div><span class="plabel tg">Av Kaydı</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a1">AK</div><span class="pname">Ahmet K.</span><span class="pdate">2s önce</span></div>
-          <h4>Boğaz'dan 3.2 kg lüfer!</h4>
-          <p>Sabah 05:30'da Sarıyer açıklarında inanılmaz bir av. Dip takla tekniği işe yaradı.</p>
-          <div class="pfoot"><button class="pact">❤️ 84</button><button class="pact">💬 23</button><button class="pact">🔖 Kaydet</button></div>
+
+    <div class="video-grid">
+      <article class="video-card fade">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/7hft2q61kBo"
+            title="Balıkçı Brothers YouTube Video 1"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
         </div>
-      </div>
-      <div class="pcard fade">
-        <div class="pthumb t2"><div class="pthumb-e">🎣</div><span class="plabel tl">Etkinlik</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a2">MB</div><span class="pname">Mert B.</span><span class="pdate">5s önce</span></div>
-          <h4>Hafta Sonu Kartepe Etkinliği</h4>
-          <p>12 kişilik grup olarak Kartepe'ye gidiyoruz. Yer var, katılmak isteyen DM atsın!</p>
-          <div class="pfoot"><button class="pact">❤️ 61</button><button class="pact">💬 17</button><button class="pact">🔖 Kaydet</button></div>
+        <div class="video-body">
+          <span class="video-badge">YOUTUBE</span>
+          <h3>Balıkçı Brothers Video 01</h3>
+          <p>Videoyu önizleme olarak doğrudan site içinde izleyebilirsin.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=7hft2q61kBo" target="_blank" rel="noopener noreferrer">YouTube'da Aç →</a>
         </div>
-      </div>
-      <div class="pcard fade">
-        <div class="pthumb t3"><div class="pthumb-e">🌅</div><span class="plabel ts">Fotoğraf</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a3">SC</div><span class="pname">Serdar C.</span><span class="pdate">1g önce</span></div>
-          <h4>Gün doğumunda Büyükçekmece</h4>
-          <p>Hiçbir şey bu saatte kıyıda olmak kadar güzel olamaz. Balık gelmese de önemli değil.</p>
-          <div class="pfoot"><button class="pact">❤️ 142</button><button class="pact">💬 31</button><button class="pact">🔖 Kaydet</button></div>
+      </article>
+
+      <article class="video-card fade">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/yBuz7KVauRQ"
+            title="Balıkçı Brothers YouTube Video 2"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
         </div>
-      </div>
-      <div class="pcard fade">
-        <div class="pthumb t4"><div class="pthumb-e">🐠</div><span class="plabel tg">Av Kaydı</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a4">EY</div><span class="pname">Emre Y.</span><span class="pdate">2g önce</span></div>
-          <h4>Sapanca'dan çipura dopingi</h4>
-          <p>Tam 7 tane çipura. Mevsim açılmış kesinlikle. Sabah sisi ayrı atmosfer yarattı.</p>
-          <div class="pfoot"><button class="pact">❤️ 98</button><button class="pact">💬 44</button><button class="pact">🔖 Kaydet</button></div>
+        <div class="video-body">
+          <span class="video-badge">YOUTUBE</span>
+          <h3>Balıkçı Brothers Video 02</h3>
+          <p>Yeni videoları kart görünümünde, yan yana ve responsive şekilde gösterir.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=yBuz7KVauRQ" target="_blank" rel="noopener noreferrer">YouTube'da Aç →</a>
         </div>
-      </div>
-      <div class="pcard fade">
-        <div class="pthumb t5"><div class="pthumb-e">🎏</div><span class="plabel ts">İpucu</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a5">KD</div><span class="pname">Kemal D.</span><span class="pdate">3g önce</span></div>
-          <h4>Sonbahar avı için 5 ipucu</h4>
-          <p>Su ısısı düşünce balık davranışı değişiyor. İşte mevsim geçişinde dikkat edilmesi gerekenler.</p>
-          <div class="pfoot"><button class="pact">❤️ 215</button><button class="pact">💬 52</button><button class="pact">🔖 Kaydet</button></div>
+      </article>
+
+      <article class="video-card fade">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/9vw62iO_jQ8"
+            title="Balıkçı Brothers YouTube Video 3"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
         </div>
-      </div>
-      <div class="pcard fade">
-        <div class="pthumb t6"><div class="pthumb-e">🌊</div><span class="plabel tl">Temizlik</span></div>
-        <div class="pbody">
-          <div class="puser"><div class="pav a6">FO</div><span class="pname">Fatih O.</span><span class="pdate">4g önce</span></div>
-          <h4>Kıyı Temizliği — Şile</h4>
-          <p>23 üye, 40 torba çöp, temiz bir kıyı. Katılan herkese teşekkürler. Önümüzdeki ay Riva!</p>
-          <div class="pfoot"><button class="pact">❤️ 310</button><button class="pact">💬 67</button><button class="pact">🔖 Kaydet</button></div>
+        <div class="video-body">
+          <span class="video-badge">YOUTUBE</span>
+          <h3>Balıkçı Brothers Video 03</h3>
+          <p>İstersen sonradan bu kartlara gerçek video başlıklarını da tek tek ekleriz.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=9vw62iO_jQ8" target="_blank" rel="noopener noreferrer">YouTube'da Aç →</a>
         </div>
-      </div>
+      </article>
+
+      <article class="video-card fade">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/81M85sQXnng"
+            title="Balıkçı Brothers YouTube Video 4"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <div class="video-body">
+          <span class="video-badge">YOUTUBE</span>
+          <h3>Balıkçı Brothers Video 04</h3>
+          <p>Hem mobilde hem masaüstünde düzgün görünmesi için alan yeniden düzenlendi.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=81M85sQXnng" target="_blank" rel="noopener noreferrer">YouTube'da Aç →</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -487,42 +517,14 @@ footer p { font-size:0.8rem; color:var(--muted); }
   </div>
 </section>
 
-<!-- INSTAGRAM -->
-<section class="insta" id="instagram">
-  <div class="container">
-    <div class="insta-head fade">
-      <div class="sec-eye">Instagram</div>
-      <h2 class="sec-title">@balikcibrothers</h2>
-      <p>Topluluğun anlık karelerine göz at</p>
-    </div>
-    <div class="igrid fade">
-      <div class="iitem"><div class="iemo">🐟</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🎣</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🌅</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🐡</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🌊</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🏆</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🎏</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-      <div class="iitem"><div class="iemo">🦐</div><div class="iover"><a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram'da Gör</a></div></div>
-    </div>
-    <div class="icta fade">
-      <a href="https://www.instagram.com/balikcibrothers/" target="_blank" class="ihandle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        Instagram'da Takip Et
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="flogo">BALIKÇI <span>BROTHERS</span></div>
   <p>© 2025 · Balıkçılık Topluluğu · İstanbul</p>
   <div class="flinks">
     <a href="#hakkimizda">Hakkımızda</a>
-    <a href="#gonderiler">Gönderiler</a>
+    <a href="#gonderiler">YouTube</a>
     <a href="#noktalar">Noktalar</a>
-    <a href="https://www.instagram.com/balikcibrothers/" target="_blank">Instagram</a>
   </div>
 </footer>
 
