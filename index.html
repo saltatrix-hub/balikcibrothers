@@ -41,6 +41,62 @@ nav a:hover { color:var(--gold); }
 /* HERO */
 .hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:0 3rem; }
 .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,#0d1520 0%,#1a2a42 50%,#0f1e30 100%); }
+.hero-slider {
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+.hero-slider::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, rgba(13,21,32,0.88) 0%, rgba(16,31,48,0.72) 32%, rgba(16,31,48,0.56) 60%, rgba(13,21,32,0.8) 100%);
+  z-index:2;
+  pointer-events:none;
+}
+.hero-slider-grid {
+  position:absolute;
+  inset:-4%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:1rem;
+  transform:rotate(-4deg) scale(1.08);
+  transform-origin:center;
+}
+.hero-row {
+  display:flex;
+  gap:1rem;
+  width:max-content;
+  will-change:transform;
+  animation:heroMarqueeRight 42s linear infinite;
+}
+.hero:hover .hero-row {
+  animation-play-state:paused;
+}
+.hero-row.row-2 { animation-duration:48s; }
+.hero-row.row-3 { animation-duration:54s; }
+@keyframes heroMarqueeRight {
+  from { transform:translateX(-50%); }
+  to { transform:translateX(0); }
+}
+.hero-slide {
+  flex:0 0 clamp(220px, 19vw, 320px);
+  height:clamp(160px, 22vh, 240px);
+  border-radius:1.1rem;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 16px 40px rgba(0,0,0,0.26);
+  background:rgba(255,255,255,0.03);
+}
+.hero-slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(0.98) contrast(1.02);
+}
 .shimmer {
   position:absolute; inset:0;
   background:radial-gradient(ellipse at 70% 60%,rgba(45,106,159,0.3) 0%,transparent 55%),
@@ -57,7 +113,7 @@ nav a:hover { color:var(--gold); }
 }
 
 .hero-inner {
-  position:relative; z-index:2; max-width:1100px; margin:0 auto; width:100%;
+  position:relative; z-index:3; max-width:1100px; margin:0 auto; width:100%;
   display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; padding-top:6rem;
 }
 .eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; }
@@ -209,11 +265,16 @@ footer p { font-size:0.8rem; color:var(--muted); }
   section{padding:4rem 1.5rem}
   .hero-inner{grid-template-columns:1fr}
   .hero-right{display:none}
+  .hero-slider-grid{gap:0.75rem;transform:rotate(-4deg) scale(1.18)}
+  .hero-slide{flex:0 0 180px;height:140px;border-radius:0.8rem}
+  .hero-row{gap:0.75rem}
   .mgrid{grid-template-columns:1fr}
   .pgrid{grid-template-columns:1fr}
   .spots-inner{grid-template-columns:1fr}
   .join-box{grid-template-columns:1fr;padding:2.5rem}
-  .igrid{grid-template-columns:repeat(2,1fr)}
+  .insta { min-height:560px; }
+  .insta-track { gap:0.75rem; animation-duration:32s; }
+  .insta-slide { flex:0 0 160px; border-radius:0.8rem; }
   footer{flex-direction:column;text-align:center}
 }
 </style>
@@ -234,6 +295,13 @@ footer p { font-size:0.8rem; color:var(--muted); }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-slider">
+    <div class="hero-slider-grid">
+      <div class="hero-row row-1" id="heroTrack1"></div>
+      <div class="hero-row row-2" id="heroTrack2"></div>
+      <div class="hero-row row-3" id="heroTrack3"></div>
+    </div>
+  </div>
   <div class="shimmer"></div>
   <div class="bubbles">
     <div class="bubble" style="width:8px;height:8px;left:15%;animation-duration:14s;animation-delay:0s"></div>
@@ -249,12 +317,7 @@ footer p { font-size:0.8rem; color:var(--muted); }
       <h1>Oltanı Al,<br><span class="acc">Topluluğa Katıl</span></h1>
       <p>Balıkçılık bir spor değil, bir yaşam biçimi. Deneyimlerini paylaş, yeni noktalar keşfet, ekiple birlikte avlan.</p>
       <div class="hero-btns">
-         <div class="icta fade">
-      <a href="https://www.instagram.com/balikcibrothers/" target="_blank" class="ihandle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        Instagram'da Takip Et
-      </a>
-        <a href="#gonderiler" class="btn-ghost">Gönderileri Gör</a>
+        <a href="https://www.instagram.com/balikcibrothers/" target="_blank" rel="noopener noreferrer" class="btn-gold">INSTAGRAM'A KATIL</a>
       </div>
       <div class="member-pill">
         <div class="member-avatars">
@@ -263,7 +326,7 @@ footer p { font-size:0.8rem; color:var(--muted); }
           <div class="av p">SC</div>
           <div class="av o">+</div>
         </div>
-        <span>2.400+ üye bu topluluğa katıldı</span>
+        <span>11.00+ üye bu topluluğa katıldı</span>
       </div>
     </div>
 
@@ -493,6 +556,27 @@ document.querySelectorAll('.pact').forEach(btn => {
     this.style.color = this.style.color === 'rgb(240, 165, 0)' ? '' : 'var(--gold)';
   });
 });
+const heroTracks = [
+  document.getElementById('heroTrack1'),
+  document.getElementById('heroTrack2'),
+  document.getElementById('heroTrack3')
+];
+
+const heroImages = Array.from({ length: 18 }, (_, i) => `${i + 1}.png`);
+const heroLoopImages = [...heroImages, ...heroImages];
+
+heroTracks.forEach((track, rowIndex) => {
+  if (!track) return;
+
+  const rotated = heroLoopImages.map((_, i) => heroLoopImages[(i + rowIndex * 6) % heroLoopImages.length]);
+
+  track.innerHTML = rotated.map((src, index) => `
+    <div class="hero-slide" aria-hidden="true">
+      <img src="${src}" alt="Balıkçılık görseli ${((index % 18) + 1)}" loading="lazy">
+    </div>
+  `).join('');
+});
+
 </script>
 </body>
 </html>
